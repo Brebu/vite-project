@@ -6,7 +6,7 @@ import './MyApp.css'
 
 function MyApp() {
     const [count, setCount] = useState(0)
-    const [primary, setPrimary] = useState('#1677ff');
+    const [primary, setPrimary] = useState('#7800cb');
 
     return (
         <ConfigProvider
@@ -14,6 +14,7 @@ function MyApp() {
                 algorithm: theme.defaultAlgorithm,
                 token: {
                     colorPrimary: primary,
+                    colorLink: primary,
                 },
             }}
         >
