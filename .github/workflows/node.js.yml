@@ -1,26 +1,28 @@
-name: Build and Audit React Project
+name: Build and Audit React Application
 
 on:
   push:
-    branches: [ main ] # Sau schimbă cu numele branch-ului tău principal
+    branches: [ main ] # Acesta va declanșa workflow-ul la fiecare push pe branch-ul 'main'
+  workflow_dispatch: # Permite declanșarea manuală a workflow-ului din GitHub UI
 
 jobs:
   build-and-audit:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Rulează job-ul pe runner-ul GitHub 'ubuntu-latest'
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Repository
+      uses: actions/checkout@v3 # Obține codul sursă din repository
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 'node' # Aceasta va utiliza ultima versiune stabilă de Node.js
+        node-version: 'node' # Folosește ultima versiune stabilă de Node.js
 
     - name: Install Dependencies
-      run: npm ci
+      run: npm install # Instalează dependențele proiectului
 
     - name: Audit Dependencies
-      run: npm audit --production # Verifică problemele de securitate în dependențele de producție
+      run: npm audit --production # Efectuează un audit de securitate asupra dependențelor de producție
 
-    - name: Build
-      run: npm run build
+    - name: Build Project
+      run: npm run build # Rulează comanda de build specifică proiectului tău React cu Vite
