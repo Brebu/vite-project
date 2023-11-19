@@ -1,28 +1,39 @@
-name: Build and Audit React Application
+name: Build, Audit, and Deploy React Application
 
 on:
   push:
-    branches: [ main ] # Acesta va declanșa workflow-ul la fiecare push pe branch-ul 'main'
-  workflow_dispatch: # Permite declanșarea manuală a workflow-ului din GitHub UI
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  build-and-audit:
-    runs-on: ubuntu-latest # Rulează job-ul pe runner-ul GitHub 'ubuntu-latest'
+  build-deploy:
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v3 # Obține codul sursă din repository
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: 'node' # Folosește ultima versiune stabilă de Node.js
+        node-version: 'node'
 
     - name: Install Dependencies
-      run: npm install # Instalează dependențele proiectului
+      run: npm install
 
     - name: Audit Dependencies
-      run: npm audit --production # Efectuează un audit de securitate asupra dependențelor de producție
+      run: npm audit --production
 
     - name: Build Project
-      run: npm run build # Rulează comanda de build specifică proiectului tău React cu Vite
+      run: npm run build
+
+    - name: Deploy to Another Repository
+      run: |
+        git config --global user.name 'Your Name'
+        git config --global user.email 'your-email@example.com'
+        git clone https://x-access-token:${{ secrets.REPO_ACCESS_TOKEN }}@github.com/YourUsername/your-target-repo.git
+        cp -r build/* your-target-repo/
+        cd your-target-repo
+        git add .
+        git commit -m "Deploy website"
+        git push
