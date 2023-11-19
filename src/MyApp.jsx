@@ -64,7 +64,7 @@ const App = () => {
                     // Seed Token
                     colorBgBase: appearance === 'dark' ? '#000000' : '#FFFFFF',
                     colorPrimary: primary,
-                    borderRadius: 16,
+                    borderRadius: 0,
                 },
             }}
         >
