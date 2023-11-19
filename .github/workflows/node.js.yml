@@ -2,7 +2,7 @@ name: Build, Audit, and Deploy React Application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
