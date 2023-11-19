@@ -29,9 +29,9 @@ jobs:
 
     - name: Deploy to Another Repository
       run: |
-        git config --global user.name 'Your Name'
-        git config --global user.email 'your-email@example.com'
-        git clone https://x-access-token:${{ secrets.REPO_ACCESS_TOKEN }}@github.com/YourUsername/your-target-repo.git
+        git config --global user.name 'Brebu Ciprian Alexandru Lucian'
+        git config --global user.email 'brebu.ciprian@gmail.com'
+        git clone https://x-access-token:${{ secrets.REPO_ACCESS_TOKEN }}@github.com/Brebu/brebu.github.io.git
         cp -r build/* your-target-repo/
         cd your-target-repo
         git add .
